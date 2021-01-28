@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-4 offset-md-4">
+            <div class="card shadow mt-4 bg-white rounded">
+                <div class="card-body">
+                    <h4>Are you sure you want to delete {{obj.title}}</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

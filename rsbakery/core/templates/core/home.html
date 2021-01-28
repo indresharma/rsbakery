@@ -1,0 +1,60 @@
+{% extends 'users/base.html' %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 order-md-1 mb-4">
+
+            <div class="card mt-3 shadow p-3 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+                        <img src="{{user.profile.image.url}}" class="rounded-circle card-img-top">
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{user.profile.first_name}} {{user.profile.last_name}}</h5>
+                    <p class="text-center">{{user.profile.location}}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-8 order-md-2">
+            
+            <div class="card mt-3 shadow p-3 mb-3 bg-white rounded">
+                <!-- <div class="row no-gutters">
+                    <div class="col-md-4">
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{object.title | capfirst}}</h5>
+                            <p class="card-text">{{object.get_summary | capfirst}}</p>
+                            <p class="card-text"><small class="text-muted">Created {{object.data_created}}</small></p>
+                        </div>
+                    </div>
+                </div> -->
+            <h4>Profile Summary</h4>
+            <hr>
+            <div>
+            <h5>About Me</h5>
+            <p>{{user.profile.about_me}}</p>
+            </div>
+            <div>
+                <h5>Email</h5>
+                <p>{{user.email}}</p>
+            </div>
+
+            </div>
+           
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+<form method="POST">
+    {%csrf_token%}
+    {% if is_collection %}
+    <button type="submit" id="add-to-collections" value="{{ object.id }}" class="btn btn-outline-danger mt-3">Remove from
+Collections</button>
+    {%else%}
+    <button type="submit" id="add-to-collections" value="{{ object.id }}" class="btn btn-outline-info mt-3">Add To
+        My Collections</button>
+    {%endif%}
+</form>
+{%endif%}

@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+<form method="POST">
+    {%csrf_token%}
+    
+    {% if request.user in object.likes.all %}
+    <button id="likes" value="{{object.id}}" class="btn btn-outline-danger mt-3">Unlike</button>
+    {% else %}
+    <button id="likes" value="{{object.id}}" class="btn btn-outline-info mt-3">Like</button>
+    {% endif %}
+    <span class="btn mt-3">Likes: {{object.likes_count}}</span>
+</form>
+{% endif %}

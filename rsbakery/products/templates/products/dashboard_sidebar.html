@@ -1,0 +1,69 @@
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="{color: #000;}">
+  Dashboard <i class="fa fa-caret-right"></i></button>
+
+
+<div class="collapse navbar-collapse flex-column" id="navbarNavDropdown">
+  <ul class="navbar-nav flex-column mr-auto w-100" id="accordian">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'products:dashboard' %}">
+        <span><i class="fa fa-bar-chart-o"></i></span> Dashboard<span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'products:dashboard-products-list' %}">
+        <span><i class="fa fa-dropbox"></i> Products</span>
+      </a>
+    </li>
+    <li class="nav-item dropdown accordian">
+      <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="stockAccordian" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span><i class="fa fa-truck"></i> Manage Stocks</span>
+      </a>
+      <div class="dropdown-menu customAccord" aria-labelledby="stockAccordian">
+        <a class="dropdown-item" href="{% url 'products:dashboard-stock-list' %}">Raw Materials</a>
+        <a class="dropdown-item" href="{% url 'products:dashboard-product-stock-list' %}">Products</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="billingAccordian" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span><i class="fa fa-dollar"></i> Billing / Invoices</span>
+      </a>
+      <div class="dropdown-menu customAccord" aria-labelledby="billingAccordian">
+        <a class="dropdown-item" href="{% url 'sales:billing' %}">Generate Invoice</a>
+        <a class="dropdown-item" href="{% url 'sales:orders' %}">Orders</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span><i class="fa fa-clipboard"></i> Posts</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span><i class="fa fa-users"></i></span> Customers
+      </a>
+    </li>
+  </ul>
+  
+  
+  <ul class="navbar-nav flex-column mr-auto w-100" id="accordian">
+    <h6 class="dashboardHeading flex-column my-2">Saved Reports</h6>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span><i class="fa fa-bar-chart-o"></i></span> Current Month</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span><i class="fa fa-bar-chart-o"></i></span> Last Month</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span><i class="fa fa-bar-chart-o"></i></span> Last Year</span>
+      </a>
+    </li>
+</div>
+

@@ -1,0 +1,152 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block body %}
+<div class="filtercontainer">
+    <form method="GET">
+        <div class="filter" style="display: none;">
+            <div class="container">
+                {% with filter.form as f %}
+                <div class="row">
+                    <div class="col">
+                        <h4>Choose a Filter</h4>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <input type="text" name="{{f.product__icontains.name}}" class="form-control"
+                            placeholder="Product Name" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.price_after_tax__gte.name}}" class="form-control"
+                            placeholder="Price Greater Than" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.price_after_tax__lte.name}}" class="form-control"
+                            placeholder="Price Less Than" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="{{f.tags__tag__icontains.name}}" class="form-control"
+                            placeholder="Tags" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.product_discount__gte.name }}" class="form-control"
+                            placeholder="Discount Greater Than" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.product_discount__lte.name }}" class="form-control"
+                            placeholder="Discount Less Than" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.weight__gte.name }}" class="form-control"
+                            placeholder="Weight Greater Than" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" name="{{f.weight__lte.name }}" class="form-control"
+                            placeholder="Weight Less Than" />
+                    </div>
+                    
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <input type="text" name="{{f.base_ingredient__icontains.name }}" class="form-control"
+                            placeholder="Base Ingredient" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="{{f.category__category__icontains.name }}" class="form-control"
+                            placeholder="Category" />
+                    </div>
+                    <div class="col text-right">
+                        <button type="button" class="btn btn-sm btn-outline-orange refreshBtn"><i class="fa fa-refresh"></i>  Reset</button>
+                        <button type="submit" class="btn btn-sm btn-outline-orange">Apply Filter</button>
+                    </div>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="filterBtn">
+            <span class="sliderBtn">Filter <i class="fa fa-angle-down"></i></span>
+        </div>
+    </form>
+
+</div>
+
+<div class="prodWrapper mt-3">
+
+    <div class="container">
+        <div class="row">
+            {% for item in object_list %}
+            <div class="col-md-2 col-sm-6 p-3">
+                <div class="card h-100 clickable" data-id="{{item.id}}">
+                    <img class="card-img-top" src="{{item.image.url}}" />
+                    <div class="card-footer prodFooter">
+                        <h5>{{item.product}}</h5>
+                        <p>Price: {{item.price_after_tax}}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col emptyContent">
+                <!-- <img src="{% static '/pictures/dectitive.png' %}"/> -->
+                <h3 class="p-3 text-center">No Product matches your Query.</h3>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if object_list %}
+        <div class="row">
+            <div class="col">
+                <div class="pagination">
+                    <span class="step-links">
+                        <ul class="pagination justify-content-center">
+                            {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                            <li class="page-item"><a class="page-link"
+                                    href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Previous</a>
+                            </li>
+                            {% endif %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}<span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+        
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">Last</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.sliderBtn').click(function () {
+            $('.filter').slideToggle('slow')
+        });
+
+        $('.refreshBtn').click(function(){
+            location.href = location.pathname
+        })
+    });
+</script>
+
+{% endblock body %}

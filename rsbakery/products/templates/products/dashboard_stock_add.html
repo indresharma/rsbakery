@@ -1,0 +1,61 @@
+{% extends 'products/dashboard.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="text-center alert alert-{{ message.tags }} mt-3">
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card pr-5 pl-5 mt-4 mb-4">
+            <div class="card-body">
+                <h5 class="card-title text-center m-3">Stock Details</h5>
+                <div class="row form-group">
+                    <div class="col-md-6 col-sm-6 inputDiv">
+                        {{ form.item|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3 col-sm-6 inputDiv file-attachment">
+                        {{ form.quantity|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3 col-sm-6 inputDiv file-attachment">
+                        <label>Unit</label>
+                        <input type="text" id="unitReadOnly" value="{{form.instance.item.get_unit_display}}" readonly class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3 col-sm-6 inputDiv">
+                        {{ form.price|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3 col-sm-6 inputDiv">
+                        {{ form.validity|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3 col-sm-6 inputDiv">
+                        {{ form.supplier|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3 col-sm-6 inputDiv">
+                        {{ form.payment_status|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script>
+
+</script>
+
+
+{% endblock main %}

@@ -1,0 +1,68 @@
+{% extends 'users/base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 order-md-1 mb-4">
+
+            <div class="card mt-3 shadow p-3 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+                        <img src="{{user.profile.image.url}}" class="rounded-circle card-img-top">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{user.profile.first_name | capfirst}}
+                        {{user.profile.last_name | capfirst }}</h5>
+                    <p class="text-center">{{user.profile.location | default_if_none:"Location"}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-8 order-md-2">
+
+            <div class="card mt-3 shadow p-3 mb-3 bg-white rounded">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Profile Summary</h4>
+                    </div>
+                    <div class="col-md-6">
+                        {% if user == request.user %}
+                        <a href="{% url 'users:update_profile' user.profile.id %}" class="btn btn-outline-info float-right"
+                            style="color: black;">Update</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <hr>
+                <div>
+                    <h5>About Me</h5>
+                    <p>{{user.profile.about_me | default:""}}</p>
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    {% if user == request.user %}
+                    <p>{{user.email}}</p>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="header">
+                <hr>
+                <h5>Posts</h5>
+                <hr>
+            </div>
+            {% for object in user.profile.get_recipes %}
+            {% include 'core/_post.html' %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

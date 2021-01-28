@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<form>
+    <div class="contactForm">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <input type="text" class="form-control" name="email" placeholder="someone@example.com">
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <textarea type="text" class="form-control" name="first_name" placeholder="Write to us..."></textarea>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button type="button" class="btn btn-block">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+{% endblock %}

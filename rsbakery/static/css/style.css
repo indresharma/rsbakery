@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap');
+* {margin: 0; padding: 0;}
+html, body {height: 100%;}
+body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weight:400; background-color: #f2eee3;}
+
+.navbar-brand{
+    margin: 0px;
+    padding: 0px;
+}
+.navbar-brand a img{
+    width: 135px;
+    height: 55px;
+}
+/* #baseDiv {min-height: 100%;} */
+
+/* #mainDiv {
+    overflow: auto;
+    padding-bottom: 210px;
+} */
+.footer {
+    width: 100%;
+    padding-top: 15px;
+    background-color: #785e4d;
+    color: white;
+    text-align: center;
+    /* position: relative;
+    height: 210px;
+    margin-top: -210px;
+    clear: both; */
+}
+
+/* @media screen and (max-width: 600px){
+    #mainDiv {
+        padding-bottom: 100vh;
+    }
+    .footer {
+        min-height: 100vh;
+        margin-top: -100vh;
+    }
+} */
+
+
+.navbar-secondary{background-color: #785e4d;}
+.text-muted span a{color: rgba(0, 0, 0, 0.801);}
+.footer a { color: white;}
+.active {background-color: #ff8426;}
+.car-title {font-size: larger;}
+.carouselImg {max-height: 350px; overflow: hidden; vertical-align: middle;}
+.carouselImg img {width: 100%;}
+.carousel-caption h5 {font-family: cursive; font-size: xx-large; font-style: italic;}
+.indexProducts img {width: 100%; height: 100%;}
+.prodFooter {padding-bottom: 0; height: 100%;}
+.prodFooter h5 {font-size: medium; font-weight: bold;}
+.headingDiv {display: flex; position: relative;}
+.headingText {margin-top: 12px ;font-size: x-large; font-weight: 500; text-transform: uppercase; color: #ff8426}
+.viewAll{position: absolute; right: 0; bottom: 0; color: #ff8426; font-size: medium;}
+.asteriskField {color: #d60202; padding-left: 2px;}
+.inputDiv{padding: 0px 5px;}
+.submitBtnDiv {float: right;}
+.card-title{font-weight: bold;}
+.submitBtn {background-color: #ff8426;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.clickable {cursor: pointer;}
+
+.contactForm{padding: 32px;}
+
+.contactForm input,
+.contactForm textarea{
+    margin: 10px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #ff8426;
+    padding: 20px;
+    color: white;
+    width: 100%;
+}
+.btnCustom {
+    background: #ff8426;
+    color: white;
+}
+.btnCustom:hover {
+    background: #785e4d;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+    .card-img-top {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+  }
+
+.btn-outline-orange{
+    background-color: transparent;
+    border: 1px solid #ff8426;
+    color: #ff8426;
+}
+.btn-outline-orange:hover{background-color: #ff8426; color: #fff;}
+
+
+/* Dashboard CSS */
+
+.dashboardContainer{
+    min-height: 450px;
+}
+
+.dashboardContainer .sidenav {
+    align-items: flex-start;
+}
+
+#navbarNavDropdown{
+    padding-top: 0;
+}
+.sidenav {
+background-color: #baaf92;
+}
+
+#accordian .nav-item {
+color: #FFF;
+min-width: 100%;
+padding: 0;
+font-size: 15px;
+}
+
+#accordian .nav-item:hover {
+background-color: rgba(255, 255, 255, 0.2);
+font-weight: bold;
+cursor: pointer;
+width: 100%;
+}
+
+#accordian .nav-item a{color: rgba(0, 0, 0, 0.7);}
+#accordian .nav-item a:hover{color: #ff8426;}
+
+
+/* .accordian div .collapse-item {
+    padding-left: 15%;
+    padding-bottom: 5px;
+} */
+
+.customAccord{
+    background-color: #FFF;
+    border-radius: 3px;
+    width: 100%;
+}
+
+/* .customAccord div div{
+    padding-left: 15%;
+    padding-top: 5px;
+    color: #000;
+} */
+
+ 
+.thead-custom {
+    background-color: rgba(255, 255, 255, 0.575);
+}
+
+.page-link {color: #ff8426;}
+.activeTab {background-color: rgba(255, 255, 255, 0.575); font-weight: bold;}
+.updateBtn {background: transparent; color: #000; padding: 5px 5px; font-size: 18px;}
+.updateBtn:hover{background-color: rgba(255, 255, 255, 0.575);border-radius: 5px;}
+.deleteBtn, .stockDeleteBtn {background: transparent; color: #d60202; padding: 5px 5px;font-size: 18px;}
+.deleteBtn:hover, .stockDeleteBtn:hover{background-color: rgba(255, 255, 255, 0.575); border-radius: 5px;}
+  
+.dashboardHeading{font-weight: 600; font-size: large; color: #FFF; text-decoration: underline;}
+.billingTable .card-header .card-footer{background-color: #FFF;}
+
+.card .col-auto i{color: rgba(0, 0, 0, 0.5);}
+
+.row .col-md-12 h2 {text-transform: uppercase; font-size: 27px; color: rgba(0, 0, 0, 0.7);}
+
+.filtercontainer {
+    position: relative;
+    margin-bottom: 30px;
+}
+.filter {
+    background: #fff;
+    padding: 15px 0px;
+}
+
+.filter .row {
+    width: 100%;
+}
+
+.filter input {
+    height: 31px;
+}
+
+.filterBtn{
+    background: #fff;
+    position: absolute;
+    right: 0%;
+}
+
+.sliderBtn{
+    border-radius: 0px;
+    padding: 3px 20px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.sliderBtn:hover {
+    border-radius: 0px;
+}
+
+.filterToggle {
+    display: none;
+}
+.billingTable .form-control-sm{
+    width: 100%;
+    border: 1px solid #000;
+}
+
+.card .btn-outline-orange, .filtercontainer .btn-outline-orange{
+    border-radius: 0px;
+}
+
+.emptyContent {min-height: 280px; position: relative}
+
+.emptyContent h3 {text-align: center;}
+
+
+

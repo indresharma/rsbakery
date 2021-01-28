@@ -1,0 +1,57 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mt-4">
+      <div class="card shadow">
+        <div class="card-header  text-white">
+          <div class="card-title">
+            <h5>Add Recipe</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            <div>
+              {% csrf_token %}
+              {{ form | crispy }}
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label for="recipe-tag">Tags</label>
+                <div class="form-group form-inline tag-wrap">
+                  <div class="input-group">
+                    <input type="text" class="form-control mb-3" name="tag" id="recipe-tag" />
+                    <span class="input-group-append">
+                      <button type="submit" class="form-control btn btn-outline-info add-tag" id="add-tag"><i
+                          class="fas fa-plus"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-6">
+                <label for="recipe-ingredient">Ingredients</label>
+                <div class="form-group form-inline ingredient-wrap">
+                  <div class="input-group">
+                    <input type="text" class="form-control mb-3" name="ingredient" id="recipe-ingredient" />
+                    <span class="input-group-append">
+                      <button type="submit" class="form-control btn btn-outline-info add-ingredient mb-3"
+                        id="add-ingredients"><i class="fas fa-plus"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-outline-info float-right">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

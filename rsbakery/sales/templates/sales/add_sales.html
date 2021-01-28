@@ -1,0 +1,141 @@
+{% extends 'products/dashboard.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+<div class="container py-3">
+    <div class="card billingTable">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="card-header px-4">
+                <header>
+                    <div class="row">
+                        <div class="col">
+                            LOGO
+                        </div>
+                        <div class="col text-right">
+                            <h2 class="name">RS BAKERS</h2>
+                            <div>6/11/348 Korkhana Faizabad</div>
+                            <div>9394887095</div>
+                            <div>indresharma@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <h2 class="text-gray-light">INVOICE TO</h2>
+                            <div class="invoice-to form-group">
+                                <input type="text" name="customer" id="customer" class="form-control-sm"
+                                    placeholder="Customer Name" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="customer_phone" id="customer_phone" class="form-control-sm"
+                                    placeholder="Customer Phone No." />
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <h2 class="text-gray-light">ORDER DETAILS</h2>
+                            <div class="invoice-id">Order ID: Will be Generated</div>
+                            <div class="date">Date: {% now 'd M Y'%}</div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+            <div class="card-body pt-0 table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="invoiceBody">
+                        <tr class="tr_clone">
+                            <td class="sno">1</td>
+                            <td>
+                                <select name="item" value="" class="form-control-sm selectItem">
+                                    <option value="">-------</option>
+                                    {% for item in items %}
+                                    <option value="{{item.id}}">{{item.product}}</option>
+                                    {% endfor %}
+                            </td>
+                            <td>
+                                <input type="number" name="quantity" class="quantity form-control-sm" />
+                            </td>
+                            <td class="price">-</td>
+                            <td class="total">-</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-sm py-0 addMoreBtn">+</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <input type="hidden" name="total_order_value" id="total_order_value" value="0" />
+                    <h5>Grand Total (INR): <span class="grandTotal">0</span></h5>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-secondary">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).on('click', '.addMoreBtn', function () {
+        var $tr = $(this).closest('.tr_clone');
+        var $clone = $tr.clone();
+        $clone.find(':text').val('');
+        $clone.find('input[type=number]').val('');
+        $clone.find('.price').text('-');
+        $clone.find('.total').text('-');
+        $tr.after($clone);
+        $(this).removeClass('addMoreBtn btn-outline-success')
+        $(this).addClass('deleteRow btn-outline-danger')
+        $(this).text('x')
+
+    });
+
+    $(document).on('click', '.deleteRow', function () {
+        $(this).closest('.tr_clone').remove();
+    });
+
+    $(document).on('change', '.selectItem', function () {
+        var id = $(this).val();
+        var $klass = $(this).closest('.tr_clone').find('.price')
+        console.log('id', id)
+        $.get('/sales/get_price/', { 'id': id }, function (res, status) {
+            $klass.text(res['price'])
+        });
+        $(this)
+    });
+
+    $(document).on('change', '.quantity', function () {
+        var qty = $(this).val()
+        var price = $(this).closest('.tr_clone').find('.price').text()
+        var total = qty * price
+        $(this).closest('.tr_clone').find('.total').text(total)
+        $('table thead th').each(function (i) {
+            calculateColumn(i);
+        });
+    });
+
+    function calculateColumn(index) {
+        var total = 0;
+        $('table tr').each(function () {
+            var value = parseInt($('.total', this).eq(index).text());
+            if (!isNaN(value)) {
+                total += value;
+            }
+        });
+        $('.grandTotal').eq(index).text(total);
+        $('#total_order_value').val(total);
+    }
+</script>
+{% endblock main %}

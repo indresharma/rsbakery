@@ -1,0 +1,130 @@
+<style>
+    .name{font-size: 32px;}
+    .company-details, .invoice-details {
+        text-align: right;
+    }
+    table{
+        padding: 5px;
+
+    }
+
+    .mainTable thead tr {
+        border-bottom: 1px solid black;
+    }
+
+    .footer-top {
+        border-top: 1px solid black;
+    }
+
+    .mainTable td, th {
+        text-align: left;
+    }
+    .thanks {
+        padding-top: 10px;
+    }
+    .grandTotal{
+        font-weight: bold;
+    }
+    .company-details, .invoice-to, .invoice-to, div, h2 {
+        padding: 0;
+        margin: 0;
+    }
+    header table tr {
+        padding-top: 5px;
+    }
+
+    .invoice-id {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    
+
+</style>
+
+
+<div class="invoice">
+    <div style="min-width: 600px">
+        <header>
+            <table>
+                <tr>
+                    <td>Logo</td>
+                    <td>
+                        <div class="col company-details">
+                            <h2 class="name">RS Bakers</h2>
+                            <div>6/11/348 Korkhana Faizabad</div>
+                            <div>9394887095</div>
+                            <div>indresharma@gmail.com</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col invoice-to">
+                            <h2 class="text-gray-light">INVOICE TO</h2>
+                            <div class="invoice-to">Customer Name: {{order.customer}}</div>
+                            <div class="email">Phone: {{order.customer_phone}}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col invoice-details">
+                            <h2 class="text-gray-light">ORDER DETAILS</h2>
+                            <div class="invoice-id">Order ID: {{order.id}}</div>
+                            <div class="date">Date: {{order.created_at|date:'d M Y'}}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        <main>
+            <table class="mainTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ITEM</th>
+                        <th>QUANTITY</th>
+                        <th>PRICE (INR)</th>
+                        <th class="total">TOTAL (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.item.all %}
+                    <tr>
+                        <td>{{forloop.counter|default_if_none:'-'}}</td>
+                        <td>{{item.item|default_if_none:'-'}}</td>
+                        <td>{{item.quantity|default_if_none:'-'}}</td>
+                        <td>{{item.price_after_tax|default_if_none:'-'}}</td>
+                        <td class="total">{{item.get_total_item_price|default_if_none:'-'}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="footer-top">
+                        <td colspan="2"></td>
+                        <td colspan="2">TOTAL BEFORE TAX</td>
+                        <td >{{order.get_total_price_before_tax}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2">TOTAL TAX (GST)</td>
+                        <td >{{order.get_total_tax}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td class="grandTotal" colspan="2">GRAND TOTAL (INR)</td>
+                        <td class="grandTotal" >{{order.get_total_price}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="thanks">Thank you!</div>
+        </main>
+        <footer>
+            *Invoice was created on a computer and is valid without the signature and seal.
+        </footer>
+    </div>
+    <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+    <div></div>
+</div>

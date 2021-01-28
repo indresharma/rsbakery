@@ -1,0 +1,70 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+{% include 'core/inner-header.html' %}
+
+<div class="container">
+    <div class="headingDiv">
+        <h4 class="headingText">Our Products</h4>
+        <a class="viewAll" href="{% url 'products:products' %}">View all</a>
+    </div>
+    <div class="row">
+        {% for item in item_list %}
+        <div class="col-md-2 col-sm-3 p-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{item.image.url}}" />
+                <div class="card-footer prodFooter">
+                    <h5>{{item.product}}</h5>
+                    <p>Price: {{item.price_after_tax}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr/>
+
+    <h4 class="headingText">Browse Categories</h4>
+    <p>We offer a range of products from Breads to Cakes. Choose your favourite Category.</p>
+
+    <div class="row pb-3">
+        <div class="col-md-4 col-sm-3 p-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="{%static 'pictures/default_cake.jpg'%}" />
+                <div class="card-footer">
+                    <h5>Cakes</h5>
+                    <p>Choose from a wide variety of Cakes</p>
+                </div>
+                <a href="{% url 'products:products' %}?category__category__icontains=cake" class="btn btn-block btn-outline-orange">Browse...</a>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4 col-sm-3 p-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="{%static 'pictures/default_cookies.jpg'%}" />
+                <div class="card-footer">
+                    <h5>Cookies</h5>
+                    <p>Chocolate, Coconut we got 'em all</p>
+                </div>
+                <a href="{% url 'products:products' %}?category__category__icontains=cookies" class="btn btn-block btn-outline-orange">Browse...</a>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4 col-sm-3 p-3">
+            <div class="card h-100">
+                <img class="card-img-top" src="{%static 'pictures/default_breads.jpg'%}" />
+                <div class="card-footer">
+                    <h5>Breads</h5>
+                    <p>Fresh, soft and crispy at the same time</p>
+                </div>
+                <a href="{% url 'products:products' %}?category__category__icontains=bread" class="btn btn-block btn-outline-orange">Browse...</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

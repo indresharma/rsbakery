@@ -1,0 +1,33 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row dashboardContainer h-100">
+        <nav class="nav navbar col-md-2 sidenav navbar-expand-md">
+            {% include 'products/dashboard_sidebar.html'%}
+        </nav>
+
+        <main role="main" class="col-md-10 col-lg-10">
+            {% block main %}
+            {% endblock main %}
+        </main>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    window.onload = function () {
+        var url = "{{request.path}}"
+        console.log($(`a[href='${url}']`))
+        $(`a[href='${url}']`).closest('li .sidenav-list-item').addClass('activeTab')
+    }
+</script>
+
+{% endblock %}
