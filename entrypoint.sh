@@ -18,5 +18,5 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput 
 python manage.py collectstatic --noinput
 
-gunicorn culinary.wsgi:application --bind 0.0.0.0:8000
+gunicorn rsbakery.wsgi:application --bind 0.0.0.0:8000
 
