@@ -31,19 +31,19 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'core',
-    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'core',
+    'products',
+    'sales',
     'crispy_forms',
     'django_summernote',
     'rest_framework',
-    'products',
-    'sales',
     'django_filters'
 ]
 
@@ -128,11 +128,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATICFILES_DIRS = (
-#   os.path.join(BASE_DIR, 'static/'),
-# )
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
 
-STATIC_ROOT = '/static/'
+# STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
@@ -173,7 +173,30 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+CUSTOM_LOGS = True
+
+
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+if CUSTOM_LOGS:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'debug.log'),
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }

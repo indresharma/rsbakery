@@ -17,6 +17,19 @@ from .forms import RegisterForm, ProfileForm
 from .models import Profile
 from .tokens import account_activation_token
 
+def error_404(request, exception):
+    data = {}
+    return render(request, 'users/error_404.html', data)
+
+
+def error_500(request):
+    data = {}
+    return render(request, 'users/error_500.html', data)
+
+def error_403(request, exception):
+    data = {}
+    return render(request, 'users/error_403.html', data)
+
 class OwnerOnlyMixin:
     """Authorize only the owner of the object to update or delete an item"""
     def dispatch(self, request, *args, **kwargs):

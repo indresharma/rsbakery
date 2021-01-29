@@ -26,4 +26,12 @@ urlpatterns = [
     path('sales/', include('sales.urls')),
     path('users/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+handler404 = 'users.views.error_404'
+handler500 = 'users.views.error_500'
+handler403 = 'users.views.error_403'
