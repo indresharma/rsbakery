@@ -2,10 +2,18 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 
+from .utils import crop_and_save
+
 class CarouselObjects(models.Model):
     img = models.ImageField(upload_to='pictures')
     img_text = models.TextField(blank=True, null=True)
     active = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        image = crop_and_save(self.img.path, 600, 1200)
+        image.save(self.img.path)
+        
 
 class Tags(models.Model):
     name = models.CharField(max_length=50)
@@ -50,6 +58,11 @@ class Recipe(models.Model):
     unit = models.CharField(max_length=20, choices=UNIT_CHOICES, default='unit')
     qty = models.IntegerField(blank=True, null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        image = crop_and_save(self.image.path, 350, 400)
+        image.save(self.image.path)
 
     def __str__(self):
         return self.title

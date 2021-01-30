@@ -3,6 +3,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 from django.db.models import Q, F
 
+from core.utils import crop_and_save
+
 User = get_user_model()
 
 
@@ -94,6 +96,8 @@ class Product(BaseTracker):
         else:
             self.price_after_tax = self.price_before_tax * (1+self.tax/100)
         super().save(*args, **kwargs)
+        image = crop_and_save(self.image.path, 350, 400)
+        image.save(self.image.path)
 
 
 class ProductStock(BaseStock):

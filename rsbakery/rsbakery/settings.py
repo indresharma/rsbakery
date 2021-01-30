@@ -143,7 +143,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.UserModel'
 
 LOGIN_URL = 'users:login'
-LOGIN_REDIRECT_URL = 'core:recipes'
+LOGIN_REDIRECT_URL = 'core:index'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -187,9 +187,13 @@ if CUSTOM_LOGS:
         'disable_existing_loggers': False,
         'handlers': {
             'file': {
-                'level': 'DEBUG',
-                'class': 'logging.FileHandler',
+                'level': 'ERROR',
+                # 'class': 'logging.FileHandler',
+                'class': 'logging.handlers.RotatingFileHandler',
                 'filename': os.path.join(BASE_DIR, 'debug.log'),
+                'maxBytes' : 1024*1024*15, # 15MB
+                'backupCount' : 5,
+                'formatter': 'simple'
             },
         },
         'loggers': {
