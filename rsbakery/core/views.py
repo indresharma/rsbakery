@@ -40,6 +40,10 @@ def add_tag_to_recipe(user, recipe, tag_list):
             recipe.save()
     return recipe
 
+
+class AboutUsView(TemplateView):
+    template_name = 'core/aboutus.html'
+
 class IndexView(View):
     template_name = 'core/index.html'
 

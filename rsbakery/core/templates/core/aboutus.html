@@ -1,0 +1,63 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 order-md-1">
+            <div class="card my-3 p-3 shadow rounded">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 mt-4 mb-4">
+                        <img src="{{user.profile.image.url}}" class="rounded-circle card-img-top">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">Aswani Kumar</h5>
+                    <p class="text-center">Owner / Chef</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-8 order-md-2">
+
+            <div class="card my-3 p-3 bg-white shadow rounded">
+                <div class="row">
+                    <div class="col">
+                        <h4>About Us</h4>
+                        <p>
+                            We started this bakery in Saraswatipuram, Faizabad with a goal to provide 100% vegetarian
+                            bakery products with best taste, premium quality at affordable prices for all.
+                        </p>
+                        <p>
+                            We are proud to offer a wide range of bakery products ranging from Cakes, Breads, Loafs,
+                            Buns, Cookies, Pastries, etc, and constantly adding more.
+                            
+                        </p>
+                    </div>
+
+                </div>
+
+                <hr>
+                <div>
+                    <h5>Know your Chef</h5>
+                    <p>Aswani has a good experience working in Hospitality Industry.</p>
+                    <p>He has worked with some of the best 5 Star Luxary Hotel Chains.</p>
+                </div>
+                <hr>
+                <div>
+                    <h5>Email</h5>
+                    <p>rsbakeryfzd@gmail.com</p>
+                </div>
+                <hr>
+                <div>
+                    <h5>Contact</h5>
+                    <p>+91 7906908088</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

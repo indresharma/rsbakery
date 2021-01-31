@@ -4,62 +4,55 @@
 {% block main %}
 
 <div class="container">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="text-center alert alert-{{ message.tags }}">
-        {{ message|safe }}
-    </div>
-    {% endfor %}
-    {% endif %}
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="card pr-5 pl-5 mt-4 mb-4">
-            <div class="card-body">
+        <div class="card my-3">
+            <div class="card-body formLayout">
                 <h5 class="card-title text-center m-3">Add Products</h5>
                 <div class="row form-group">
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.product|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.weight|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.category|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv file-attachment">
+                    <div class="col-md-3 col-sm-6 file-attachment">
                         {{ form.image |as_crispy_field }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.price_before_tax |as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.tax|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.product_discount|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.best_before|as_crispy_field }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.base_ingredient|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.quantity_available|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.tags|as_crispy_field }}
                     </div>
-                    <div class="col-md-3 col-sm-6 inputDiv">
+                    <div class="col-md-3 col-sm-6">
                         {{ form.status|as_crispy_field }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-12 col-sm-6 inputDiv">
+                    <div class="col-md-12 col-sm-6">
                         {{ form.description|as_crispy_field }}
                     </div>
                 </div>

@@ -18,6 +18,7 @@ urlpatterns = [
     path('likes/', Likes.as_view(), name='likes'),
     path('update-collections/', UpdateCollectionView.as_view(), name='update-collections'),
     path('contact/', ContactView.as_view(), name='contact-us'),
+    path('about-us/', AboutUsView.as_view(), name='about-us'),
 
 
     
