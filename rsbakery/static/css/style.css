@@ -54,7 +54,7 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
 .prodFooter h5 {font-size: medium; font-weight: bold;}
 .headingDiv {display: flex; position: relative;}
 .headingText {margin-top: 12px ;font-size: x-large; font-weight: 500; text-transform: uppercase; color: #ff8426}
-.viewAll{position: absolute; right: 0; bottom: 0; color: #ff8426; font-size: medium;}
+.viewAll{margin-right: 0.5em; color: #ff8426; font-size: medium;}
 .asteriskField {color: #d60202; padding-left: 2px;}
 .inputDiv{padding: 0px 5px;}
 .submitBtnDiv {float: right;}

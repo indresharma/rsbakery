@@ -6,10 +6,9 @@
 {% include 'core/inner-header.html' %}
 
 <div class="container">
-    <div class="headingDiv">
-        <h4 class="headingText">Our Products</h4>
-        <a class="viewAll" href="{% url 'products:products' %}">View all</a>
-    </div>
+    <h4 class="headingText">Our Products</h4>
+    <p>Choose your favourites from our wide range of products</p>
+    
     <div class="row">
         {% for item in item_list %}
         <div class="col-md-2 col-sm-3 p-3">
@@ -22,6 +21,11 @@
             </div>
         </div>
         {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <a class="viewAll" href="{% url 'products:products' %}">View all</a>
+        </div>
     </div>
     <hr/>
 

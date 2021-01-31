@@ -3,7 +3,7 @@
 {% block body %}
 <div class="filtercontainer">
     <form method="GET">
-        <div class="filter" style="display: none;">
+        <!-- <div class="filter" style="display: none;">
             <div class="container">
                 {% with filter.form as f %}
                 <div class="row">
@@ -67,7 +67,7 @@
         </div>
         <div class="filterBtn">
             <span class="sliderBtn">Filter <i class="fa fa-angle-down"></i></span>
-        </div>
+        </div> -->
     </form>
 
 </div>
@@ -97,7 +97,7 @@
         {% if object_list %}
         <div class="row">
             <div class="col">
-                <div class="pagination">
+                <div class="pagination float-right">
                     <span class="step-links">
                         <ul class="pagination justify-content-center">
                             {% if page_obj.has_previous %}
