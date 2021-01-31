@@ -193,7 +193,6 @@ if CUSTOM_LOGS:
                 'filename': os.path.join(BASE_DIR, 'debug.log'),
                 'maxBytes' : 1024*1024*15, # 15MB
                 'backupCount' : 5,
-                'formatter': 'simple'
             },
         },
         'loggers': {
