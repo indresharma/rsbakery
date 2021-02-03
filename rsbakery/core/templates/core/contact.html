@@ -1,27 +1,30 @@
 {% extends 'users/base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block body %}
-<form>
-    <div class="contactForm">
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                <input type="text" class="form-control" name="first_name" placeholder="First Name">
-            </div>
-            <div class="col-md-4 offset-md-4">
-                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
-            </div>
-            <div class="col-md-4 offset-md-4">
-                <input type="text" class="form-control" name="email" placeholder="someone@example.com">
-            </div>
-            <div class="col-md-4 offset-md-4">
-                <textarea type="text" class="form-control" name="first_name" placeholder="Write to us..."></textarea>
-            </div>
-            <div class="col-md-4 offset-md-4">
-                <button type="button" class="btn btn-block">Submit</button>
-            </div>
+<div class="imageContainer">
+    <div class="container contactus">
+        <div class="heading">
+            <h2>Contact Us</h2>
+            <p>We are happy to hear your views. Please let us know what we can do better to provide you best anyone can
+                offer.</p>
+        </div>
+        <div class="content">
+            <h3><i class="fa fa-map-marker-alt"></i> Address</h3>
+            <p>Saraswatipuram, Near Primary School, Korkhana, Faizabad, 224001</p>
+        </div>
+        <div class="content">
+            <h3><i class="fa fa-envelope"></i> Email</h3>
+            <p>rsbakeryfzd@gmail.com</p>
+        </div>
+        <div class="content">
+            <h3><i class="fa fa-phone-alt"></i> Phone</h3>
+            <p>+91 7906908088</p>
         </div>
 
     </div>
-</form>
+
+</div>
+
 
 {% endblock %}

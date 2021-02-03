@@ -44,6 +44,9 @@ def add_tag_to_recipe(user, recipe, tag_list):
 class AboutUsView(TemplateView):
     template_name = 'core/aboutus.html'
 
+class ContactView(TemplateView):
+    template_name = 'core/contact.html'
+
 class IndexView(View):
     template_name = 'core/index.html'
 
@@ -240,7 +243,3 @@ class Likes(LoginRequiredMixin, View):
             form = render_to_string('core/_like_snippet.html', context, request=request)
             return JsonResponse({'form': form})
 
-
-class ContactView(TemplateView):
-    template_name = 'core/contact.html'
-    

@@ -71,9 +71,49 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
 }
 .clickable {cursor: pointer;}
 
-.contactForm{padding: 32px;}
+.imageContainer{
+    background-image: url(/static/pictures/contact_bgc.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
 
-.contactForm input,
+
+
+@media screen and (max-width: 600px) {
+    .imageContainer {
+        background-position: 65%;
+    }
+  }
+.imageContainer .heading {
+    padding-bottom: 75px;
+}
+
+.contactus {
+    padding: 45px;
+}
+
+.content h3 {
+    font-weight: 300;
+    font-size: 22px;
+}
+
+.imageContainer .loginForm {
+    color: #fff;
+    font-weight: 500;
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.imageContainer .loginForm label, a {
+    font-size: 15px;
+}
+
+
+/* .contactForm input,
 .contactForm textarea{
     margin: 10px 0;
     background: transparent;
@@ -82,7 +122,8 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
     padding: 20px;
     color: white;
     width: 100%;
-}
+    border-radius: 0px;
+} */
 .btnCustom {
     background: #ff8426;
     color: white;
@@ -112,6 +153,12 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
     }
   }
 
+.text-orange {
+    color: #ff8426;
+}
+.text-orange:hover {
+    color: #fff;
+}
 .btn-outline-orange{
     background-color: transparent;
     border: 1px solid #ff8426;
