@@ -17,12 +17,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         <div class="card-body">
-                            <div class="inputDiv">
-                                {{form.username|as_crispy_field}}
-                            </div>
-                            <div class="inputDiv">
-                                {{form.password|as_crispy_field}}
-                            </div>
+                            {{form|crispy}}
                             <div class="text-right p-1">
                                 <a href="{% url 'users:password_reset' %}" class="float-left pt-1 text-orange">Forgot Password?</a>
                                 <button type="submit" class="btn btn-outline-orange px-4">Login</button>

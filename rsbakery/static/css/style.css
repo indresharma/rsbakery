@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap');
 * {margin: 0; padding: 0;}
-html, body {height: 100%;}
-body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weight:400; background-color: #f2eee3;}
+html {height: 100%;}
+body {
+    font-family: 'Open Sans', sans-serif !important; 
+    font-size:13px;
+    font-weight:400; 
+    background-color: #f2eee3;
+
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
 
 .navbar-brand{
     margin: 0px;
@@ -12,34 +22,16 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
     width: 135px;
     height: 55px;
 }
-/* #baseDiv {min-height: 100%;} */
 
-/* #mainDiv {
-    overflow: auto;
-    padding-bottom: 210px;
-} */
 .footer {
     width: 100%;
     padding-top: 15px;
     background-color: #785e4d;
     color: white;
     text-align: center;
-    /* position: relative;
-    height: 210px;
-    margin-top: -210px;
-    clear: both; */
+    margin-top: auto;
+
 }
-
-/* @media screen and (max-width: 600px){
-    #mainDiv {
-        padding-bottom: 100vh;
-    }
-    .footer {
-        min-height: 100vh;
-        margin-top: -100vh;
-    }
-} */
-
 
 .navbar-secondary{background-color: #785e4d;}
 .text-muted span a{color: rgba(0, 0, 0, 0.801);}
@@ -113,17 +105,6 @@ body {font-family: 'Open Sans', sans-serif !important; font-size:13px;font-weigh
 }
 
 
-/* .contactForm input,
-.contactForm textarea{
-    margin: 10px 0;
-    background: transparent;
-    border: 0;
-    border-bottom: 2px solid #ff8426;
-    padding: 20px;
-    color: white;
-    width: 100%;
-    border-radius: 0px;
-} */
 .btnCustom {
     background: #ff8426;
     color: white;
@@ -202,22 +183,11 @@ width: 100%;
 #accordian .nav-item a:hover{color: #ff8426;}
 
 
-/* .accordian div .collapse-item {
-    padding-left: 15%;
-    padding-bottom: 5px;
-} */
-
 .customAccord{
     background-color: #FFF;
     border-radius: 3px;
     width: 100%;
 }
-
-/* .customAccord div div{
-    padding-left: 15%;
-    padding-top: 5px;
-    color: #000;
-} */
 
  
 .thead-custom {
