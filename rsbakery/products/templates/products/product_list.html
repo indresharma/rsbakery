@@ -209,7 +209,9 @@
             location.href = location.pathname
         });
 
-        $('#filter-accord').accordion();
+        $('#filter-accord').accordion({
+            collapsible:true,
+        });
 
         $('#price-slider').slider({
             range: true,

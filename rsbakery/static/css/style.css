@@ -311,3 +311,10 @@ width: 100%;
     width: 15%;
     left:90%;
 }
+
+.ui-state-active {
+    border: 1px solid #ff8426;
+    background: #ff8426;
+    font-weight: normal;
+    color: #ffffff;
+}
