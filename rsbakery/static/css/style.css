@@ -262,3 +262,52 @@ width: 100%;
 
 
 
+.container {
+    max-width: 85%;
+}
+.searchBarOuter {
+    display: flex;
+ 
+}
+
+.searchBar {
+    position: relative;
+}
+
+.searchBar input {
+    border: 1px solid #ff8426;
+}
+
+.searchBtn {
+    color: #ff8426;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.refreshBtn {
+    color: #ff8426;
+}
+
+.slider-outer {
+    position: relative;
+}
+
+.slider-outer .min-div {
+    position: absolute;
+    width: 10%;
+    left:0;
+}
+
+.slider-outer .slider-div {
+    padding-top: 1%;
+    position: absolute;
+    width: 75%;
+    left: 10%;
+}
+
+.slider-outer .max-div {
+    position: absolute;
+    width: 15%;
+    left:90%;
+}

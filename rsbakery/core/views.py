@@ -136,7 +136,10 @@ class RecipeListView(View):
                 'queryset': queryset
             })
         else:
-            return HttpResponse('No Items Found', status=404)
+            return render(request, 'core/recipe_list.html', {
+                # 'random_obj': random_obj,
+                'queryset': queryset
+            })
 
 
 class UpdateIngredient(LoginRequiredMixin, View):

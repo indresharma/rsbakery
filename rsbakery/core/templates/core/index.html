@@ -11,15 +11,7 @@
     
     <div class="row">
         {% for item in item_list %}
-        <div class="col-md-2 col-sm-3 p-3">
-            <div class="card h-100">
-                <img class="card-img-top" src="{{item.image.url}}" />
-                <div class="card-footer prodFooter">
-                    <h5>{{item.product}}</h5>
-                    <p>Price: {{item.price_after_tax}}</p>
-                </div>
-            </div>
-        </div>
+        {% include 'products/_product_snippet.html' %}
         {% endfor %}
     </div>
     <div class="row">

@@ -1,9 +1,9 @@
 {% extends 'users/base.html' %}
 {% load static %}
 {% block body %}
-<div class="filtercontainer">
+<!-- <div class="filtercontainer">
     <form method="GET">
-        <!-- <div class="filter" style="display: none;">
+        <div class="filter" style="display: none;">
             <div class="container">
                 {% with filter.form as f %}
                 <div class="row">
@@ -67,73 +67,135 @@
         </div>
         <div class="filterBtn">
             <span class="sliderBtn">Filter <i class="fa fa-angle-down"></i></span>
-        </div> -->
+        </div>
     </form>
 
-</div>
+</div> -->
 
-<div class="prodWrapper mt-3">
+<div class="prodWrapper">
 
-    <div class="container">
+    <div class="fluid-container px-3 py-0">
         <div class="row">
-            {% for item in object_list %}
-            <div class="col-md-2 col-sm-6 p-3">
-                <div class="card h-100 clickable" data-id="{{item.id}}">
-                    <img class="card-img-top" src="{{item.image.url}}" />
-                    <div class="card-footer prodFooter">
-                        <h5>{{item.product}}</h5>
-                        <p>Price: {{item.price_after_tax}}</p>
+            <div class="card col-md-3" style="min-height: 100%;">
+                <form method="GET" class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex py-3">
+                                <div class=" searchBar flex-fill">
+                                    <input type="text" class="form-control" placeholder="search" name="search">
+                                    <button type="submit" class="btn searchBtn"><i class="fa fa-search"></i></button>
+                                </div>
+                                <div class="">
+                                    <a href="javascript:void(0);" class="btn refreshBtn"><i class="fa fa-refresh"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-div">
+                        <h5>Filters</h5>
+                        <div id="filter-accord">
+                            <h5>Category</h5>
+                            <div class="category-filter">
+                                {% for key, val in filter.form.fields.category.choices %}
+                                {% if key %}
+                                <div class="col-md-1 col-2 custom-control custom-radio">
+                                    <input id="{{val}}" name="{{filter.form.category.name}}" value="{{key}}" type="radio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label pt-1" for="{{val}}">{{val}}</label>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <h5>Price</h5>
+                            <div class="price-filter">
+                                <div class="slider-outer">
+                                    <div class="min-div">0</div>
+                                    <div class="slider-div"><div id="price-slider"></div></div>
+                                    <div class="max-div">5000</div>
+                                </div>
+                                <input type="hidden" name="{{filter.form.price_after_tax__lte.name}}" id="pmax">
+                                <input type="hidden" name="{{filter.form.price_after_tax__gte.name}}" id="pmin">
+                            </div>
+                            <h5>Discount</h5>
+                            <div class="discount-filter">
+                                <div class="slider-outer">
+                                    <div class="min-div">0</div>
+                                    <div class="slider-div"><div id="discount-slider"></div></div>
+                                    <div class="max-div">100</div>
+                                </div>
+                                <input type="hidden" name="{{filter.form.product_discount__lte.name}}" id="dmax">
+                                <input type="hidden" name="{{filter.form.product_discount__gte.name}}" id="dmin">
+                            </div>
+                            <h5>Base Ingredeint</h5>
+                            <div class="ingredient-filter">
+                                <input type="text" name="{{f.base_ingredient__icontains.name }}" class="form-control"
+                                    placeholder="Base Ingredient" />
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="py-3 text-right">
+                        <button type="submit" class="btn btn-outline-orange">Apply Filter</button>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            <div class="col-md-9">
+
+                <div class="row">
+                    {% for item in object_list %}
+                    {% include 'products/_product_snippet.html' %}
+                    {% empty %}
+                    <div class="col emptyContent">
+                        <!-- <img src="{% static '/pictures/dectitive.png' %}"/> -->
+                        <h3 class="p-3 text-center">No Product matches your Query.</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% if object_list %}
+                <div class="row">
+                    <div class="col">
+                        <div class="pagination float-right">
+                            <span class="step-links">
+                                <ul class="pagination justify-content-center">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                            href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                                    {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Previous</a>
+                                    </li>
+                                    {% endif %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.number }}">
+                                            {{ page_obj.number}}<span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Last</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% empty %}
-            <div class="col emptyContent">
-                <!-- <img src="{% static '/pictures/dectitive.png' %}"/> -->
-                <h3 class="p-3 text-center">No Product matches your Query.</h3>
-            </div>
-            {% endfor %}
-        </div>
-
-        {% if object_list %}
-        <div class="row">
-            <div class="col">
-                <div class="pagination float-right">
-                    <span class="step-links">
-                        <ul class="pagination justify-content-center">
-                            {% if page_obj.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-                            <li class="page-item"><a class="page-link"
-                                    href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            {% endif %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}<span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-        
-                            {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                            </li>
-                            {% else %}
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#">Last</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </span>
-                </div>
+                {% endif %}
             </div>
         </div>
-        {% endif %}
-
-
     </div>
 </div>
 
@@ -143,9 +205,38 @@
             $('.filter').slideToggle('slow')
         });
 
-        $('.refreshBtn').click(function(){
+        $('.refreshBtn').click(function () {
             location.href = location.pathname
-        })
+        });
+
+        $('#filter-accord').accordion();
+
+        $('#price-slider').slider({
+            range: true,
+            min: 0,
+            max: 5000,
+            step: 10,
+            change: function(event, ui) {
+                $('.price-filter .min-div').text(ui.values[0])
+                $('.price-filter .max-div').text(ui.values[1])
+                $('#pmin').val(ui.values[0])
+                $('#pmax').val(ui.values[1])
+            }
+        });
+
+        $('#discount-slider').slider({
+            range: true,
+            min: 0,
+            max: 100,
+            step: 5,
+            change: function(event, ui) {
+                $('.discount-filter .min-div').text(ui.values[0])
+                $('.discount-filter .max-div').text(ui.values[1])
+                $('#dmin').val(ui.values[0])
+                $('#dmax').val(ui.values[1])
+            }
+        });
+
     });
 </script>
 

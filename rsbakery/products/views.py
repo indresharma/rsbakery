@@ -32,6 +32,12 @@ class ProductListView(FilterView):
     filterset_class = ProductFilter
 
     def get_queryset(self):
+        query = self.request.GET.get('search', None)
+        if query:
+            return Product.objects.filter(
+                Q(product__icontains=query) | Q(category__category__icontains=query) \
+                    | Q(tags__tag__icontains=query)
+            ).order_by('-id')
         return Product.objects.all().order_by('-id')
 
     # def get_context_data(self, **kwargs):

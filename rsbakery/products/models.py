@@ -74,6 +74,11 @@ class Product(BaseTracker):
             ('access_dashboard', 'Access Dashboard'),
         )
 
+    def get_weight(self):
+        if self.weight:
+            return f'{self.weight} Gms.' 
+        return 'N/A'
+
     def get_status(self):
         if self.status:
             return 'Active'

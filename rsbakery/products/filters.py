@@ -9,11 +9,8 @@ class ProductFilter(FilterSet):
     class Meta:
         model = Product
         fields = {
-            'product' : ['icontains'],
             'price_after_tax' : ['gte', 'lte'],
-            'category__category' : ['icontains'],
-            'tags__tag' : ['icontains'],
-            'status' : ['iexact'],
+            'category' : ['exact'],
             'product_discount' : ['gte', 'lte'],
             'weight': ['gte', 'lte'],
             'base_ingredient': ['icontains'],
