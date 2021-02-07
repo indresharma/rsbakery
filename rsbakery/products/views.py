@@ -34,6 +34,11 @@ class ProductListView(FilterView):
 
     def get_queryset(self):
         query = self.request.GET.get('search', None)
+        ctg = self.request.GET.get('ctg', None)
+        if ctg:
+            return Product.objects.filter(
+                Q(category__category__icontains=ctg)
+            ).order_by('-id')
         if query:
             return Product.objects.filter(
                 Q(product__icontains=query) | Q(category__category__icontains=query) \

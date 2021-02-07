@@ -298,15 +298,15 @@ width: 100%;
 
 .slider-outer .min-div {
     position: absolute;
-    width: 10%;
+    width: 15%;
     left:0;
 }
 
 .slider-outer .slider-div {
     padding-top: 1%;
     position: absolute;
-    width: 75%;
-    left: 10%;
+    width: 70%;
+    left: 15%;
 }
 
 .slider-outer .max-div {
