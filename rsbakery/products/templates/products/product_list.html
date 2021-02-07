@@ -111,7 +111,7 @@
                                 <div class="slider-outer">
                                     <div class="min-div">0</div>
                                     <div class="slider-div"><div id="price-slider"></div></div>
-                                    <div class="max-div">5000</div>
+                                    <div class="max-div">1000</div>
                                 </div>
                                 <input type="hidden" name="{{filter.form.price_after_tax__lte.name}}" id="pmax">
                                 <input type="hidden" name="{{filter.form.price_after_tax__gte.name}}" id="pmin">
@@ -216,8 +216,9 @@
         $('#price-slider').slider({
             range: true,
             min: 0,
-            max: 5000,
+            max: 1000,
             step: 10,
+            values: [0, 1000],
             change: function(event, ui) {
                 $('.price-filter .min-div').text(ui.values[0])
                 $('.price-filter .max-div').text(ui.values[1])
@@ -231,6 +232,7 @@
             min: 0,
             max: 100,
             step: 5,
+            values: [0, 100],
             change: function(event, ui) {
                 $('.discount-filter .min-div').text(ui.values[0])
                 $('.discount-filter .max-div').text(ui.values[1])
