@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView, View, UpdateView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import CustomAuthMixin
 from django.contrib import messages
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,8 +13,10 @@ from django.template.loader import render_to_string
 
 from .models import *
 from .forms import RecipeForm
+from .utils import CustomAuthMixin
 from users.views import OwnerOnlyMixin
 from products.models import Product
+
 
 def add_ingredient_to_recipe(user, recipe, ingredient_list):
     """Helper function to add ingredients to recipe"""
@@ -63,7 +65,7 @@ class IndexView(View):
 
 
 
-class CreateRecipeView(LoginRequiredMixin, View):
+class CreateRecipeView(CustomAuthMixin, View):
     """View to create a new recipe"""
 
     def get(self, request, *args, **kwargs):
@@ -87,7 +89,7 @@ class CreateRecipeView(LoginRequiredMixin, View):
         return redirect('core:create-recipe')
 
 
-class RecipeDetailView(View):
+class RecipeDetailView(CustomAuthMixin, View):
     def get(self, request, *args, **kwargs):
         recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
         user = self.request.user
@@ -108,13 +110,13 @@ class RecipeDetailView(View):
         return redirect('core:detail', recipe.id)
 
 
-class RecipeUpdateView(LoginRequiredMixin, OwnerOnlyMixin, UpdateView):
+class RecipeUpdateView(CustomAuthMixin, OwnerOnlyMixin, UpdateView):
     model = Recipe
     form_class = RecipeForm
     template_name = 'core/recipe_update_form.html'
 
 
-class RecipeDeleteView(LoginRequiredMixin, OwnerOnlyMixin, DeleteView):
+class RecipeDeleteView(CustomAuthMixin, OwnerOnlyMixin, DeleteView):
     model = Recipe
 
 
@@ -142,7 +144,7 @@ class RecipeListView(View):
             })
 
 
-class UpdateIngredient(LoginRequiredMixin, View):
+class UpdateIngredient(CustomAuthMixin, View):
     def get(self, request, *args, **kwargs):
         recipe = get_object_or_404(Recipe, pk=kwargs['pk'])
         return render(request, 'core/update.html', {'recipe': recipe})
@@ -155,7 +157,7 @@ class UpdateIngredient(LoginRequiredMixin, View):
             return redirect('core:detail', recipe.id)
 
 
-class RemoveIngredient(LoginRequiredMixin, View):
+class RemoveIngredient(CustomAuthMixin, View):
     def get(self, request, *args, **kwargs):
         recipe = get_object_or_404(Recipe, pk=kwargs.get('recipe'))
         if recipe.user==self.request.user:
@@ -165,7 +167,7 @@ class RemoveIngredient(LoginRequiredMixin, View):
         return redirect('core:recipes')
         
 
-class UpdateCollectionView(LoginRequiredMixin, View):
+class UpdateCollectionView(CustomAuthMixin, View):
     def post(self, request, *args, **kwargs):
         recipe = get_object_or_404(Recipe, id=self.request.POST.get('pk'))
         my_collections, created = RecipeCollection.objects.get_or_create(user=self.request.user)
@@ -189,7 +191,7 @@ class UpdateCollectionView(LoginRequiredMixin, View):
             return JsonResponse({'form': form})
         
 
-class RecipeCollectionListView(LoginRequiredMixin, ListView):
+class RecipeCollectionListView(CustomAuthMixin, ListView):
     """Shows the Users Recipe Collection"""
     model = RecipeCollection
     template_name = 'core/recipecollection_list.html'
@@ -204,7 +206,7 @@ class RecipeCollectionListView(LoginRequiredMixin, ListView):
         return queryset
 
     
-class AddComment(LoginRequiredMixin, CreateView):
+class AddComment(CustomAuthMixin, CreateView):
     model = Comments
     fields = ('comment',)
 
@@ -216,7 +218,7 @@ class AddComment(LoginRequiredMixin, CreateView):
         return super().form_valid(form, **kwargs)
 
 
-class RemoveComment(LoginRequiredMixin, View):
+class RemoveComment(CustomAuthMixin, View):
     def post(self, request, *args, **kwargs):
         comment = Comments.objects.get(pk=self.kwargs.get('pk'))
         if comment.user == self.request.user:
@@ -224,7 +226,7 @@ class RemoveComment(LoginRequiredMixin, View):
         return HttpResponse('success', status=200)
     
     
-class Likes(LoginRequiredMixin, View):
+class Likes(CustomAuthMixin, View):
     def post(self, request, *args, **kwargs):
         recipe = get_object_or_404(Recipe, id=self.request.POST.get('pk'))
         user = self.request.user

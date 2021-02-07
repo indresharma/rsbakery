@@ -15,6 +15,7 @@ from .models import *
 # from .forms import *
 
 from products.models import Product
+from core.utils import CustomAuthMixin
 
 from io import BytesIO
 from django.http import HttpResponse
@@ -51,10 +52,6 @@ def get_price(request):
     return JsonResponse({'price': price})
 
 
-class CustomAuthMixin(LoginRequiredMixin, PermissionRequiredMixin):
-    permission_required = []
-
-
 class OrderCreateView(CustomAuthMixin, View):
     template_name = 'sales/add_sales.html'
     tax = 18
@@ -88,10 +85,10 @@ class OrderCreateView(CustomAuthMixin, View):
 
         return redirect('sales:get_invoice', order.id)
 
-        return render(request, self.template_name, context={'items': items})
+        # return render(request, self.template_name, context={'items': items})
 
 
-class OrdersListView(ListView):
+class OrdersListView(CustomAuthMixin, ListView):
     model = Order
     template_name = 'sales/orders.html'
     paginate_by = 10

@@ -11,6 +11,7 @@ from django_filters.views import FilterView
 from .models import *
 from .forms import *
 from .filters import ProductFilter
+from core.utils import CustomAuthMixin
 
 ############## Helper Function #######################
 
@@ -21,8 +22,8 @@ def get_unit(request):
     return JsonResponse({'unit': unit})
 
 
-class CustomAuthMixin(LoginRequiredMixin, PermissionRequiredMixin):
-    permission_required = []
+# class CustomAuthMixin(LoginRequiredMixin, PermissionRequiredMixin):
+#     permission_required = []
 
 
 class ProductListView(FilterView):
@@ -75,18 +76,21 @@ class ProductDeleteView(CustomAuthMixin, DeleteView):
 
 
 #################### Dashboard Views #################################
-class DashboardView(TemplateView):
+class DashboardView(CustomAuthMixin, TemplateView):
+    permission_required = ['products.access_dashboard']
     template_name = 'products/dashboard_main.html'
 
 
-class DashboardProductListView(ProductListView):
+class DashboardProductListView(CustomAuthMixin, ProductListView):
+    permission_required = ['products.access_dashboard']
     template_name = 'products/dashboard_products_list.html'
     paginate_by = 10
 
 
 #################### Stock Views ######################################
 
-class RawMaterialListView(ListView):
+class RawMaterialListView(CustomAuthMixin, ListView):
+    permission_required = ['products.view_rawmaterial']
     model = RawMaterial
     template_name = 'products/dashboard_rm_list.html'
     paginate_by = 10
@@ -119,7 +123,8 @@ class RawMaterialCreateView(CustomAuthMixin, SuccessMessageMixin, CreateView):
         super().form_invalid(form)
 
 
-class StockListView(ListView):
+class StockListView(CustomAuthMixin, ListView):
+    permission_required = ['products.view_rmstock']
     model = RMStock
     template_name = 'products/dashboard_stock_list.html'
     paginate_by = 10
@@ -145,7 +150,7 @@ class StockUpdateView(CustomAuthMixin, SuccessMessageMixin, UpdateView):
     success_message = 'Stock updated Successfully'
 
 class StockDeleteView(CustomAuthMixin, SuccessMessageMixin, DeleteView):
-    permission_required = ['products.change_product']
+    permission_required = ['products.change_rmstock']
     model = RMStock
     success_message = 'Stock deleted Successfully'
 
@@ -156,7 +161,8 @@ class StockDeleteView(CustomAuthMixin, SuccessMessageMixin, DeleteView):
         return JsonResponse(payload)
 
 
-class ProductStockListView(ListView):
+class ProductStockListView(CustomAuthMixin, ListView):
+    permission_required = ['products.view_productstock']
     model = ProductStock
     template_name = 'products/dashboard_product_stock.html'
     paginate_by = 10

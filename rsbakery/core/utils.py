@@ -1,4 +1,5 @@
 from PIL import Image
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 def crop_and_save(image_path, height, width):
@@ -25,3 +26,9 @@ def crop_and_save(image_path, height, width):
     bottom = (h + height)/2
     img = img.crop((left, top, right, bottom)) 
     return img
+
+
+class CustomAuthMixin(LoginRequiredMixin, PermissionRequiredMixin):
+    permission_required = []
+
+    
