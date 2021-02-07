@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView, View, UpdateView, DeleteView, CreateView
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import CustomAuthMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
