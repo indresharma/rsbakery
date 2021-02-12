@@ -26,6 +26,8 @@ def get_unit(request):
 #     permission_required = []
 
 
+############## Product Basic Views #######################
+
 class ProductListView(FilterView):
     model = Product
     template_name = 'products/product_list.html'
@@ -49,7 +51,10 @@ class ProductListView(FilterView):
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
 
-
+class ProductDetailView(DetailView):
+    """Open View to show product detail page"""
+    model = Product
+    template_name = 'products/product_detail.html'
 
 class ProductCreateView(CustomAuthMixin, SuccessMessageMixin, CreateView):
     permission_required = ['products.add_product']

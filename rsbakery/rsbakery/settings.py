@@ -144,6 +144,9 @@ AUTH_USER_MODEL = 'users.UserModel'
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'core:index'
+SESSION_COOKIE_AGE = 1200
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

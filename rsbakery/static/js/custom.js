@@ -132,3 +132,10 @@ $(document).on('click', '.addProductStockBtn', function(){
         $('#productStockModal').modal('show')
     });
 });
+
+// Products scripts
+
+$(document).on('click', '.clickable', function(){
+    var id = $(this).attr('data-id');
+    location.href = `/products/${id}/`
+});
