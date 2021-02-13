@@ -33,7 +33,19 @@ body {
 
 }
 
-.navbar-secondary{background-color: #785e4d;}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 576px) {
+    .footer-links {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+.navbar-secondary{background-color: #785e4d; font-size: 0.9rem;}
 .text-muted span a{color: rgba(0, 0, 0, 0.801);}
 .footer a { color: white;}
 .active {background-color: #ff8426;}
@@ -107,7 +119,7 @@ body {
     padding-bottom: 55px;
 }
 
-.imageContainer .loginForm label, a {
+.imageContainer .loginForm label {
     font-size: 15px;
 }
 
@@ -173,14 +185,15 @@ body {
     padding-top: 0;
 }
 .sidenav {
-background-color: #baaf92;
+background-color: #94725b;
 }
 
 #accordian .nav-item {
 color: #FFF;
 min-width: 100%;
-padding: 0;
-font-size: 15px;
+/* padding-left: 5%;
+padding-right: 5%; */
+font-size: 0.75rem;
 }
 
 #accordian .nav-item:hover {
@@ -190,15 +203,41 @@ cursor: pointer;
 width: 100%;
 }
 
-#accordian .nav-item a{color: rgba(0, 0, 0, 0.7);}
+#accordian .nav-item a{color: #fff;}
 #accordian .nav-item a:hover{color: #ff8426;}
+.nav-item .nav-link{padding-left: 1rem; padding-right: 1rem;}
 
-
+#accordian .nav-item .show {
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
 .customAccord{
-    background-color: #FFF;
-    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: inherit; */
+    border-radius: 0.25rem;
     width: 100%;
 }
+
+.accord-item {
+    font-size: 0.85rem;
+    font-weight: 300;
+    padding: 0.3em 2em;
+}
+
+.active-accord {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.active-accord .nav-link {
+    background-color: #ff8426;
+}
+.active-accord .nav-link:hover {
+    color: #fff !important;
+    font-size: 1.1em;
+}
+
+
 
  
 .thead-custom {
@@ -211,7 +250,7 @@ width: 100%;
 .page-link {color: #ff8426;}
 .activeTab {background-color: rgba(255, 255, 255, 0.575); font-weight: bold;}
 .updateBtn {background: transparent; color: #000; padding: 5px 5px; font-size: 18px;}
-.updateBtn:hover{background-color: rgba(255, 255, 255, 0.575);border-radius: 5px;}
+.updateBtn:hover{background-color: rgba(255, 255, 255, 0.575);border-radius: 0.25;}
 .deleteBtn, .stockDeleteBtn {background: transparent; color: #d60202; padding: 5px 5px;font-size: 18px;}
 .deleteBtn:hover, .stockDeleteBtn:hover{background-color: rgba(255, 255, 255, 0.575); border-radius: 5px;}
   
@@ -276,7 +315,7 @@ width: 100%;
 .emptyContent h3 {text-align: center;}
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1264px) {
     .container {
         max-width: 85%;
     }
